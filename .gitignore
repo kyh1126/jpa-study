@@ -1,0 +1,9 @@
+build/
+.idea/
+.gradle/
+*.env
+.run/
+
+# 설치형 H2 DB 찾기 쉽게 프로젝트 디렉토리 하위에 넣어둠
+h2/
+test.mv.db
