@@ -47,6 +47,10 @@ public class JpaMain {
         //한 건 조회
         Member findMember = em.find(Member.class, id);
         System.out.println("findMember=" + findMember.getUsername() + ", age=" + findMember.getAge());
+//        findMember.setAge(32);
+
+//        Member findMember2 = em.find(Member.class, id);
+//        System.out.println("findMember2=" + findMember2.getUsername() + ", age=" + findMember2.getAge());
 
         //목록 조회
         List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
