@@ -1,3 +1,5 @@
 rootProject.name = 'jpa-study'
 
 include 'ch02-jpa-start1'
+include 'ch04-jpa-start2'
+include 'ch04-model1'

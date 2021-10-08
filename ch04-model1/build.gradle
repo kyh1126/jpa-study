@@ -1,0 +1,3 @@
+dependencies {
+    implementation 'org.hibernate:hibernate-entitymanager' // 5.4.32
+}
