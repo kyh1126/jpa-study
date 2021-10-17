@@ -1,10 +1,10 @@
 package jpabook.start;
 
-import javax.persistence.*;  //**
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="MEMBER", uniqueConstraints = {@UniqueConstraint( //추가 //**
+@Table(name="MEMBER", uniqueConstraints = {@UniqueConstraint( //추가
         name = "NAME_AGE_UNIQUE",
         columnNames = {"NAME", "AGE"} )})
 public class Member {
@@ -13,8 +13,8 @@ public class Member {
     @Column(name = "ID")
     private String id;
 
-    @Column(name = "NAME", nullable = false, length = 10) //추가 //**
-//    @Column(name = "NAME") //추가 //**
+    @Column(name = "NAME", nullable = false, length = 10) //추가
+//    @Column(name = "NAME") //추가
     private String username;
 
     private Integer age;

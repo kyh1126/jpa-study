@@ -3,11 +3,18 @@
 
     <persistence-unit name="jpabook">
         <class>jpabook.model.entity.Member</class>
-        <class>jpabook.model.entity.Item</class>
+        <class>jpabook.model.entity.item.Item</class>
+        <class>jpabook.model.entity.item.Album</class>
+        <class>jpabook.model.entity.item.Book</class>
+        <class>jpabook.model.entity.item.Movie</class>
         <class>jpabook.model.entity.Order</class>
         <class>jpabook.model.entity.OrderItem</class>
         <class>jpabook.model.entity.Category</class>
         <class>jpabook.model.entity.Delivery</class>
+        <class>jpabook.model.entity._3_복합키와식별관계매핑._2_복합키_비식별관계매핑_IdClass.Child1</class>
+        <class>jpabook.model.entity._3_복합키와식별관계매핑._2_복합키_비식별관계매핑_IdClass.Parent1</class>
+        <class>jpabook.model.entity._3_복합키와식별관계매핑._2_복합키_비식별관계매핑_EmbeddedId.Child2</class>
+        <class>jpabook.model.entity._3_복합키와식별관계매핑._2_복합키_비식별관계매핑_EmbeddedId.Parent2</class>
         <properties>
             <!-- H2 데이터베이스 드라이버 및 설정 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
@@ -15,12 +22,13 @@
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/IdeaProjects/jpa-study/test"/>
 
+
             <!-- H2 데이터베이스 방언 사용 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <!-- 테이블 자동 생성 -->
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             <!-- 실행되는 SQL 을 보여줌 -->
-            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.show_sql" value="true"/>
             <!-- 실행되는 SQL 을 이쁘게 보여줌 -->
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.id.new_generator_mappings" value="true"/>

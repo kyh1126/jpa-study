@@ -1,11 +1,15 @@
-package jpabook.model.entity;
+package jpabook.model.entity.item;
+
+import jpabook.model.entity.Category;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE")
+public abstract class Item {
 
     @Id
     @GeneratedValue
@@ -16,10 +20,10 @@ public class Item {
     private int price;          //가격
     private int stockQuantity;  //재고수량
 
-    //Getter, Setter
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<Category>();
 
+    //Getter, Setter
     public Long getId() {
         return id;
     }
