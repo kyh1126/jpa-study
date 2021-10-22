@@ -2,11 +2,14 @@ package jpabook.model.entity;
 
 import jpabook.model.entity.item.Item;
 
+import javax.persistence.*;
+
 @Entity
 @Table(name = "ORDER_ITEM")
 public class OrderItem {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 

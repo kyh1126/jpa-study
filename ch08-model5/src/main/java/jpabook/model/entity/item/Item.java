@@ -1,8 +1,8 @@
 package jpabook.model.entity.item;
 
-
 import jpabook.model.entity.Category;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +11,8 @@ import java.util.List;
 @DiscriminatorColumn(name = "DTYPE")
 public abstract class Item {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "ITEM_ID")
     private Long id;
 

@@ -2,13 +2,15 @@ package jpabook.model.entity;
 
 import jpabook.model.entity.item.Item;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Category {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "CATEGORY_ID")
     private Long id;
 

@@ -1,10 +1,12 @@
 package jpabook.model.entity;
 
+import javax.persistence.*;
 
 @Entity
 public class Delivery {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "DELIVERY_ID")
     private Long id;
 

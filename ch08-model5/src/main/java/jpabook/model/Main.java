@@ -5,9 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-/**
- * Created by 1001218 on 15. 4. 5..
- */
 public class Main {
 
     public static void main(String[] args) {
