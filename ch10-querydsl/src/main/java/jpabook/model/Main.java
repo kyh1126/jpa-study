@@ -4,7 +4,10 @@ import static jpabook.model.entity.QMember.member;
 
 import com.querydsl.core.QueryModifiers;
 import com.querydsl.core.QueryResults;
+import com.querydsl.jpa.JPAExpressions;
+import com.querydsl.jpa.impl.JPADeleteClause;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +32,7 @@ public class Main {
 
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
-            queryDSL85(em);
+            queryDSL94(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -118,5 +121,57 @@ public class Main {
 
 //        SearchResult<Item> result = qb.listResults(item);
         QueryResults<Item> items = qb.fetchResults();
+    }
+
+    /**
+     * select item from jpabook.model.entity.item.Item item where item.price = (select
+     * max(itemSub.price) from jpabook.model.entity.item.Item itemSub)
+     */
+    public static void queryDSL93(EntityManager entityManager) {
+        JPAQuery query = new JPAQuery(entityManager);
+        QItem item = QItem.item;
+        QItem itemSub = new QItem("itemSub");
+
+        JPAQuery qb = (JPAQuery) query.from(item)
+            .where(item.price.eq(
+//                new JPASubQuery().from(itemSub).unique(itemSub.price.max())
+                JPAExpressions
+                    .select(itemSub.price.max())
+                    .from(itemSub)
+            ));
+        List<Item> items = qb.fetch();
+    }
+
+    /**
+     * select item from jpabook.model.entity.item.Item item where item in (select itemSub from
+     * jpabook.model.entity.item.Item itemSub where item.name = itemSub.name)
+     */
+    public static void queryDSL94(EntityManager entityManager) {
+        JPAQuery query = new JPAQuery(entityManager);
+        QItem item = QItem.item;
+        QItem itemSub = new QItem("itemSub");
+
+        JPAQuery qb = (JPAQuery) query.from(item)
+            .where(item.in(
+//                new JPASubQuery().from(itemSub).where(item.name.eq(itemSub.name))
+                JPAExpressions
+                    .select(itemSub)
+                    .from(itemSub)
+                    .where(item.name.eq(itemSub.name))
+            ));
+        List<Item> items = qb.fetch();
+    }
+
+    public static void queryDSL101(EntityManager entityManager) {
+        QItem item = QItem.item;
+
+        JPAUpdateClause updateClause = new JPAUpdateClause(entityManager, item);
+        long count1 = updateClause.where(item.name.eq("jenny 의 JPA 책"))
+            .set(item.price, item.price.add(100)) // 상품의 가격을 100원 증가
+            .execute();
+
+        JPADeleteClause deleteClause = new JPADeleteClause(entityManager, item);
+        long count2 = deleteClause.where(item.name.eq("jenny 의 JPA 책"))
+            .execute();
     }
 }
