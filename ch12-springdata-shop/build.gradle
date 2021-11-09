@@ -1,0 +1,27 @@
+plugins {
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
+    implementation 'org.hibernate:hibernate-entitymanager' // 5.4.32
+    implementation 'org.springframework.data:spring-data-jpa'
+    implementation 'com.querydsl:querydsl-jpa:4.4.0'
+    implementation 'com.querydsl:querydsl-apt:4.4.0'
+}
+
+//querydsl 추가 시작
+def outputDirectory = "$buildDir/generated/querydsl"
+querydsl {
+    jpa = true
+    querydslSourcesDir = outputDirectory
+}
+sourceSets {
+    main.java.srcDir outputDirectory
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
