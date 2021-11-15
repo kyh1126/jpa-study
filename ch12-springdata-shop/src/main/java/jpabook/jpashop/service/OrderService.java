@@ -27,8 +27,8 @@ public class OrderService {
     public Long order(Long memberId, Long itemId, int count) {
 
         //엔티티 조회
-        Member member = memberRepository.getById(memberId);
-        Item item = itemService.getById(itemId);
+        Member member = memberRepository.findById(memberId);
+        Item item = itemService.findById(itemId);
 
         //배송정보 생성
         Delivery delivery = new Delivery(member.getAddress());
@@ -49,7 +49,7 @@ public class OrderService {
     public void cancelOrder(Long orderId) {
 
         //주문 엔티티 조회
-        Order order = orderRepository.getById(orderId);
+        Order order = orderRepository.findById(orderId);
 
         //주문 취소
         order.cancel();
